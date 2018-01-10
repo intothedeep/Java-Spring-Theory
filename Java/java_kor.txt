@@ -24,12 +24,30 @@
 http://blog.wishket.com/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-vs-%EC%A0%88%EC%B0%A8%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/
 
    - 객체지향
-  캡슐화, 데이터의 직접적인 접근 제한, 메소드를 사용해 데이터를 조작
-  상속, 존재하는 클래스를 이어받아 새로운 클래스 생성, 코드의 재활용성
-  추상화, 공통 분모, 통일성 & 강제성 부여
+  객체: 사물
+  클래스: 사물의 상태(filed)와 행위(method)를 추상화 시킨 정보가 담긴 코드의 집합, filed, constructor, Method
+  인스턴스: JVM이 관리하는 메모리에 할당된 코드화 된 객체 (초기화 된 객체)
+
+  Car는 클래스
+  Car car; car 객체 선언
+  car = new Car() 초기화, car를 인스턴스화 (car 객체를 JVM 메모리에 적재시키는 과정)
+
+  인스턴스화:
+    Car taxi = new Car();
+    Car taxi = car.clone();
+    Car taxi = car.getClaa().newInstance();
+
+  캡슐화,
+    서로 관련 있는 기능이나 데이터를 한 곳으로 모아서 효율적으로 관리 및 사용할 수 있도록 하는 것
+    필요한 데이터 이외 데이터에 대한  직접적인 접근 제한, 메소드를 사용해 데이터를 조작 (은닉화)
+
+  상속, 부모 클래스의 속성과 메소드를 자식 클래스가 물려 받는 것, 코드의 재활용성
+  추상화,
+    클래스: 사물을 단순화 시켜 필요한 정보와 행위를 모은 클래스
+    추상 클래스: 연관된 클래스들의 공통 상태와 메소드들이 집합된 클래스, 통일성 & 강제성 부여, 생산성
   다형성,
-    같은 값 => 다른 결과// Overriding
-    같은이름 => 다른 결과 // Overloading
+    같은 메소드 => 다른 결과 // Overloading 컴파일 시
+    같은 값 => 다른 결과// Overriding 런타임시
 
 단점, 속도, 크기가 커짐, 메소드 호출 시 class 통째로 불러와야 함
 장점, 재사용, 업그레이드, 신뢰성(완성된 class 사용), 디버깅이 쉽다.
@@ -146,11 +164,61 @@ http://blog.wishket.com/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-vs-%EC%A0%88%EC%B0%
 
 12. 추상 클래스와 인터페이스 등장 배경과 차이점
 
+    왜 등장?
+      통일성과 강제,
+
+  - 추상 클래스가
+    구성: 필드 생성자 메소드(1나 이상의 추상메소드)
+    접근제어자: default, public, private, protected
+    수정자: abstract
+    상속: 하나만 상속 가능
+
+
+
+    언제 사용?
+    여러 비슷한 클래스들의 공통 분모를 공유하고 싶을 때
+    이 클래스를 상속받는 클래스들이 특정 필드, 메소드, 접근제어자를 사용하길 원할 때
+    상수가 아닌 변수를 사용하고 싶을 때
+
+
+  - 인터페이스
+    구성: 상수와 추상메소드, default, static(나중에 추가 됨),
+    접근제어자: 디폴트가 public 생략가능
+    상수: static final 생략가능
+    수정자: interface
+    상속: 다중 상속 가능
+
+    extends: 상속
+    implements: 구현( 구현받는 클래스는 abstract 메소드를 구현해줘야 한다.)
+
+    왜 등장?
+
+
+    언제 사용?
+    별 관련이 없는 클래스가 인터페이스를 구현하길 원할 때
+    특정 데이터 타입의 행위를 강제하고자 할 때 (상수)
+    다중 상속을 하고 싶을 때
+
+
+
+  *추상 클래스 객체생성
+    1. 하위 클래스 이용
+    2. 자신의 객체를 반환하는 static method 이용
+    3. 외부 클래스 참조
+    4. 자신의 생성자를 사용
+
+  클래스 클래스 상속가능
+  클래스 인터페이스 구현가능
+  인터페이스 클래스 상속 불가능, 구현 불가능
+  인터페이스 인터페이스 구현 가능
+
+
 13. 쓰레드 구현
 
 14. 네트워크 구현
 
 15. 동기 비동기의 차이점
+
 
 16. Array와 ArrayList
 
@@ -225,3 +293,93 @@ http://blog.wishket.com/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-vs-%EC%A0%88%EC%B0%
   오버라이딩: 부모 클래스의 메소드를 자식 클래스에서 재정의
   오버로딩: 같은 이름의 메소드 생성가능
   (단, 매개변수(인수)의 숫자 그리고 타입이 달라야 함, 대표적으로 생성자)
+
+20. vector와 List // 추가 수정 필요
+
+  - vector
+  일반적인 배열처럼 vector는 개체들을 연속적인 메모리 공간에 저장
+  iterator와 index로 접근 가능
+  vector는 동적으로 확장/축소가 가능한 dynamic array로 구성
+
+  일반적으로 값에 대한 접근이 빠름
+  중간 삽입/제거 시 List에 비해 속도가 느림
+
+  - List
+  삽입/제거가 빠름
+  원소들의 순서이동이 빠르다
+
+  index 접근불가, 검색 속도가 느림
+  원소들간의 상호 연결 정보(포인터)를 위해 추가적인 메모리 사용
+
+21. Array와 ArrayList
+
+            크기  삭제시
+  Array     불변  null
+  ArrayList 가변  한 칸씩 당겨짐
+
+
+22. ArrayList와 LinkedList
+              추가/삭제                           index조회
+  ArrayList   느림: 앞 뒤로 땡겨야 함, 크기 재조정//빠름:  무작위 접근 가능
+  LinkedList  빠름: 앞 뒤의 node 설정만 바꾸면 됨//느림:  순차적 접근 가능
+
+  이유?
+
+  http://www.nextree.co.kr/p6506/
+
+23. 공간 복잡도, 시간 복잡도
+
+24. Collection (List, Set, Map)
+
+    Collection
+      List
+        LinkedList
+        stack
+        vector
+        ArrayList
+        순서가 있는 데이터의 집합, 데이터 중복 허용
+
+      Set
+        HashSet
+        SortedSet: TreeSet
+        순서를 유지하지 않는 데이터의 집합, 데이터의 중복응 허용x
+
+      Map
+        HashTable
+        HashMap
+        SortedMap: TreeMap
+        key와 value 한쌍으로 구성, 순서x, 키 중복x, 값 중복0
+
+
+    ==========
+        - hash table
+        hash_map과 hash_set이 사용하는 자료구조
+        테이블에 자료를 저장할때 키값을 해시 함수에 대입하여 버킷 번호가 나오면 그 버킷의 빈 슬롯에 자료를 저장
+        버킷 번호에 자료를 넣으므로 많은 자료를 저장해도 삽입, 삭제, 검색 속도가 거의 일정
+
+        - hash_map
+        장점 : 많은 자료를 저장하고 있어도 검색이 빠름
+        단점 : 자료가 적으면 메모리 낭비와 검색시 오버헤드 생김
+
+        검색이 빠르다고 무분별하게 사용하면 안됨. 컨테이너를 추가 삭제하는 것은 list, vector가 훨씬 빠름
+        적은 요소를 저장하여 검색을 하는 경우네는 vector,list를 사용하고 수천의 자료를 저장하여 검색을 하는 경우에는 hash_map을 사용
+
+        map과의 차이 : 정렬 안함!
+
+        - hash_set
+        hash_map처럼 hash table을 자료구조로 사용하고 set처럼 key만을 저장
+        이또한 정렬이 필요 없을때 사용할것!
+        출처: <https://m.blog.naver.com/PostView.nhn?blogId=psd0217&logNo=220308769007&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F>
+    =========
+
+25. File
+
+26. I/O
+
+27. n I/O
+
+28. Socket
+
+29. Thread 구현
+
+30. network
