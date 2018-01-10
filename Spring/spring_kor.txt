@@ -1,1 +1,21 @@
 스프링 정리!
+
+
+1. 스프링 특징
+IOC(Inversion of Control)
+DI(Dependency Injection)
+AOP(Aspect of Point)
+
+2. JSP vs Servlet
+  java in html
+  html in java
+
+3. Servlet
+
+4. bean
+
+5. dispatcher Servlet
+
+6. 스프링 실행 순서
+
+7. 
