@@ -2,20 +2,150 @@
 
 
 1. 스프링 특징
-IOC(Inversion of Control)
-DI(Dependency Injection)
-AOP(Aspect of Point)
+  Java application framework
+  특징:
+    IOC(Inversion of Control);
+    개발자가 관리하던 객체의 생성과 생명주기를 스프링 컨테이너가 대신 관리
+    스프링을 객체를 생성하고 각 객체를 연결해주는 조립기 역할을 하게 된다.
+    ex)
+      String configLocation = "classPath:applicationContext.xml";
+      AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
+      Project project = ctx.getBean("test", Project.class);
+      project.build();
+      ctx.close;
 
-2. JSP vs Servlet
+    GenericXmlApplicationContext : 조립기 기능을 구현한 클래스
+    XML: 조립기가 생성할 객체가 무었이고, 각 객체를 어떻게 연결하는지에 대한 정보를 저장한 설정파일
+    GenericXmlApplicationContext는 XML파일의 설정 정보를 읽어와 객체를 생성하고 각각의 객체를 연결한 뒤에 내부적으로 보관
+
+    그래서
+    Spring = Object Container;
+
+** bean
+    스프링 컨테이너가 생성해서 보관하는 객체를 스프링 빈(Spring Bean)이라고 한다.
+    <bean id="a" class="클래스 위치, com.test.springtest.A">
+      <property name="prop1" ref="b"/>
+
+      <constructor-arg ref="b">
+    </bean>
+
+    <bean id="b" class="B">
+    </bean>
+
+    프로퍼티는
+    setProp1() 메서드가 만들어지고 객체 b가 a객체에 주입된다. (생성자를 이용한 주입 가능);
+
+    클래스로 구현하면
+    Class A {
+      private B b;
+
+      //생성자 방식
+      public A (B b) {
+        this.b = b;
+      }
+
+      //프로퍼티 방식
+      public void setProp1(B b) {
+        this.b = b;
+      }
+
+    }
+
+
+** Spring Container (=> applicationContext)
+
+
+
+**  IoC의 구현
+    DL(Dependency Lookup)
+    DI(Dependency Injection)
+  응 사용해 구현
+
+
+** AOP(Aspected Oriented Programming)
+
+
+
+** JSP vs Servlet
   java in html
   html in java
 
-3. Servlet
 
-4. bean
+** Servlet
+  동적 데이터 처리가 가능한 Java Servlet 클래스를 상속받아 만들어진 Java 프로그램?
 
-5. dispatcher Servlet
 
-6. 스프링 실행 순서
 
-7. 스프링 bean life cycle
+
+** dispatcher Servlet
+
+
+** 스프링 실행 순서
+
+
+** 스프링 bean life cycle
+
+
+** Tomcat
+  톰캣은 웹서버 + JSP/Servlet Container이다.
+
+** 웹서버, WAS
+  웹서버는 정적 데이터 처리, http 요청
+  WAS는 동적 데이터 처리가 가능하다.
+
+**
+
+
+**RESTful API
+
+**Ajax
+
+**Kakao pay
+
+**JSON 변환
+
+**Log4j
+
+**STMP 설정 법과 사용법
+
+**싱글톤, 팩토리 메소드
+
+**MVC
+  디자인 패턴
+
+**JSTL
+  Jsp Standard Tag Library
+  html에서 자바코드를 작성할 때 불편한 점을 개선할 수 있는 JRE라이브러리
+
+  사용법
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+  <c: if test="조건식" var="" scope=""> </c:if>
+
+  <c:forEach var=" i " begin=" 1 " end=" 10 " step=" 1 ">
+
+  <c:choose>
+    <c:when test="${empty list }">
+        등록된 글이 없습니다.
+    </c:when>
+    <c:when test="${abc}">
+        안녕하세요
+    </c:when>
+    <c:otherwise>
+        <c:set var="doneLoop" value="false" />
+    </c:otherwise>
+  </c:choose>
+
+**mustache
+  template engine
+  템플레이트를 만들고
+  Mustache.render()를 사용해 파싱
+
+**jQuery
+  대표적인 Javascript library
+
+**2티어, 3티어, N티어
+  클라이언트 + 어플리케이션 계층(비지니스 로직 처리), 데이터베이스 계층
+  클라이언트, 어플리케이션 계층, 데이터베이스 계층
+  N티어는 어플리케이션 계층이 담당하는 작업을 좀 더 세분화 할 수도 있고, 데이터베이스 계층을 여러개 가지거나 함
+  ex) API server 추가
